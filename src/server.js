@@ -61,6 +61,11 @@ const configureServer = () => createServer({
 
             return schema.reports.all().filter(report => filterAuthor(report) && filterVerified(report))
         })
+
+        this.get('/reports/:id', (schema, request) => {
+            const id = request.params.id
+            return schema.reports.find(id)
+        })
     }
 })
 
