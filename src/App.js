@@ -1,26 +1,36 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
-import {Switch, BrowserRouter, Route, Link} from "react-router-dom";
+import {Switch, BrowserRouter, Route} from "react-router-dom";
 import Login from "./features/login/components/Login/Login";
-import {Provider} from "react-redux";
+import {Provider, useDispatch, useSelector} from "react-redux";
 import store from "./store";
+import Me from "./features/users/components/Me/Me";
+import {checkAuth, selectIsAuthorized} from "./features/login/login.slice";
 
 function App() {
     return (
         <Provider store={store}>
-            <BrowserRouter>
-                <Switch>
-                    <Route exact path="/">
-                        <Link to="/login">Login</Link>
-                    </Route>
-                    <Route path="/login">
-                        <Login/>
-                        <Link to="/">Back</Link>
-                    </Route>
-                </Switch>
-            </BrowserRouter>
+            <Game/>
         </Provider>
     );
+}
+
+function Game() {
+    const dispatch = useDispatch()
+    const isAuthorized = useSelector(selectIsAuthorized)
+
+    useEffect(() => {
+        dispatch(checkAuth())
+    }, [dispatch])
+
+    return isAuthorized ? <BrowserRouter>
+        <Me/>
+        <Switch>
+            <Route exact path="/">
+                content
+            </Route>
+        </Switch>
+    </BrowserRouter> : <Login/>
 }
 
 export default App;

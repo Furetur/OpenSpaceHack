@@ -1,7 +1,7 @@
 import {HOST} from "../../constants";
 import {saveAuthToken} from "./login.utils";
 
-export const requestAuthToken = async (username, password) => {
+export const requestLogin = async (username, password) => {
     const response = await fetch(`${HOST}/login`, {
         method: 'POST',
         body: JSON.stringify({
@@ -13,10 +13,7 @@ export const requestAuthToken = async (username, password) => {
     if (response.status !== 200 || authHeader == null) {
         throw Error('Auth failed')
     }
-    return authHeader
-}
-
-export const requestLogin = async (username, password) => {
-    const authToken = await requestAuthToken(username, password)
+    const authToken = authHeader.slice(7)
     saveAuthToken(authToken)
+    return await response.json()
 }
