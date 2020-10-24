@@ -122,6 +122,5 @@ export const isReportWithRequestedAuthor = (authorFilter, report, myId) => {
  */
 export const isReportWithRequestedVerification = (verificationFilter, report) => {
     const {verified} = verificationFilter
-    debugger
     return verified == null || report.verified === verified
 }

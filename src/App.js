@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import './App.css';
 import Tamagochi from "./features/tamagochi/Tamagochi";
-import {BrowserRouter} from "react-router-dom";
+import {Redirect, BrowserRouter} from "react-router-dom";
 import Login from "./features/login/components/Login/Login";
 import {useDispatch, useSelector} from "react-redux";
 import {checkAuth, selectIsAuthorized} from "./features/login/login.slice";
@@ -18,6 +18,7 @@ function App() {
 
     return isAuthorized ? (
         <BrowserRouter>
+            <Redirect exact from="/" to="reports"/>
             {/*<Me/>*/}
             {/*<Switch>*/}
             {/*    <Route exact path="/">*/}
