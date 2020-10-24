@@ -1,12 +1,13 @@
 import React, {useEffect} from 'react';
 import './App.css';
 import Tamagochi from "./features/tamagochi/Tamagochi";
-import {Redirect, BrowserRouter} from "react-router-dom";
+import {Switch, Route, Redirect, BrowserRouter} from "react-router-dom";
 import Login from "./features/login/components/Login/Login";
 import {useDispatch, useSelector} from "react-redux";
 import {checkAuth, selectIsAuthorized} from "./features/login/login.slice";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Header from "./components/Header/Header";
+import ReportForm from "./features/reports/components/ReportForm/ReportForm";
 
 function App() {
     const dispatch = useDispatch()
@@ -19,21 +20,17 @@ function App() {
     return isAuthorized ? (
         <BrowserRouter>
             <Redirect exact from="/" to="reports"/>
-            {/*<Me/>*/}
-            {/*<Switch>*/}
-            {/*    <Route exact path="/">*/}
-            {/*        content*/}
-            {/*        <Tamagochi />*/}
-            {/*        <SubmitBugButton />*/}
-            {/*    </Route>*/}
-            {/*    <Route path="/reports">*/}
-            {/*        <ReportsListWrapper />*/}
-            {/*    </Route>*/}
-            {/*</Switch>*/}
             <Header/>
             <main>
                 <Sidebar/>
-                <Tamagochi/>
+                <Switch>
+                    <Route path="/reports">
+                        <Tamagochi/>
+                    </Route>
+                    <Route path="/submitBug">
+                        <ReportForm />
+                    </Route>
+                </Switch>
             </main>
         </BrowserRouter>
     ) : <Login/>

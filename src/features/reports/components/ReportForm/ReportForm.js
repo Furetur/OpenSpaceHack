@@ -1,8 +1,8 @@
 import React, {useCallback, useState} from 'react'
-import usePostReport from "../../../reports.hooks";
-import Status from "../../../../../utils/Status";
+import usePostReport from "../../reports.hooks";
+import Status from "../../../../utils/Status";
 import {useDispatch} from "react-redux";
-import {receiveReport} from "../../../reports.slice";
+import {receiveReport} from "../../reports.slice";
 import styles from './ReportForm.module.css'
 
 const useInputValue = (defaultValue = '') => {
