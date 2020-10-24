@@ -3,6 +3,7 @@ import {useSelector} from "react-redux";
 import {selectReport} from "../../reports.slice";
 import bugImg from './bug.png'
 import styles from './Report.module.css'
+import {Link} from "react-router-dom";
 
 
 const Report = ({id}) => {
@@ -10,13 +11,13 @@ const Report = ({id}) => {
     return report != null ? (
         <div className={styles.Report}>
             <div className={styles.image}>
-                <a href="">
+                <Link to={`report/${report.id}`}>
                     <img src={bugImg} alt="Bug"/>
-                </a>
+                </Link>
             </div>
             <div className={styles.content}>
                 <div className={styles.title}>
-                    <a href="">{report.bugName}</a>
+                    <Link to={`report/${report.id}`}>{report.bugName}</Link>
                 </div>
                 <div className="star-rating" id="report1">
                     {report.verified === true ? 'Verified' : ''}

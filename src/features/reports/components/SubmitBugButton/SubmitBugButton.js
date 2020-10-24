@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 const SubmitBugButton = () => {
     return (
         <div>
-            <Link to="submitBug" className={styles.SubmitBugButton}>
+            <Link to="/submitBug" className={styles.SubmitBugButton}>
                 Submit a bug
             </Link>
         </div>

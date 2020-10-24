@@ -98,9 +98,9 @@ const configureServer = () => createServer({
             return schema.reports.all().filter(report => filterAuthor(report) && filterVerified(report)).models
         })
 
-        this.get('/reports/:id', (schema, request) => {
+        this.get('/report/:id', (schema, request) => {
             const id = request.params.id
-            return schema.reports.find(id)
+            return schema.reports.find(id).toJSON()
         })
         this.post('/report', (schema, request) => {
             const body = JSON.parse(request.requestBody)

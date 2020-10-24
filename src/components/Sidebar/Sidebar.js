@@ -9,7 +9,7 @@ const Sidebar = () => {
         <div className={styles.Sidebar}>
             <SubmitBugButton />
             <Switch>
-                <Route path="/reports">
+                <Route path={["/reports", "/report/:id"]}>
                     <ReportsListWrapper />
                 </Route>
             </Switch>
