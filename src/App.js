@@ -1,21 +1,21 @@
 import React, {useEffect} from 'react';
 import './App.css';
 import {Switch, Route, Redirect, BrowserRouter} from "react-router-dom";
-import Login from "./features/login/components/Login/Login";
-import {useDispatch, useSelector} from "react-redux";
-import {checkAuth, selectIsAuthorized} from "./features/login/login.slice";
+import {useDispatch} from "react-redux";
+import {checkAuth} from "./features/login/login.slice";
 import Header from "./components/Header/Header";
 import PageWithSideBar from "./components/PageWithSidebar/PageWithSidebar";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import AuthPage from "./features/login/components/AuthPage/AuthPage";
 
 function App() {
     const dispatch = useDispatch()
-    const isAuthorized = useSelector(selectIsAuthorized)
 
     useEffect(() => {
         dispatch(checkAuth())
     }, [dispatch])
 
-    return isAuthorized ? (
+    return (
         <BrowserRouter>
             <Header/>
             <main>
@@ -23,13 +23,16 @@ function App() {
                     <Route exact path="/" render={() => (
                         <Redirect to="reports"/>
                     )}/>
-                    <Route path={['/reports', '/submitBug', '/report/:id']}>
-                        <PageWithSideBar />
+                    <ProtectedRoute path={['/reports', '/submitBug', '/report/:id']}>
+                        <PageWithSideBar/>
+                    </ProtectedRoute>
+                    <Route path={['/login', '/signup']}>
+                        <AuthPage/>
                     </Route>
                 </Switch>
             </main>
         </BrowserRouter>
-    ) : <Login/>
+    )
 }
 
 export default App;

@@ -15,6 +15,11 @@ export const selectMe = createSelector(
 const usersSlice = createSlice({
     name: 'users',
     initialState: usersAdapter.getInitialState(),
+    reducers: {
+        receiveUser(usersState, action) {
+            usersAdapter.upsertOne(usersState, action.payload)
+        }
+    },
     extraReducers: builder => {
         builder.addCase(fetchMe.fulfilled, (usersState, action) => {
             usersAdapter.upsertOne(usersState, action.payload)
@@ -24,5 +29,7 @@ const usersSlice = createSlice({
         })
     }
 })
+
+export const receiveUser = usersSlice.actions.receiveUser
 
 export default usersSlice.reducer
