@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import ReportForm from "./ReportForm/ReportForm";
 import Modal from 'react-modal'
+import styles from './SubmitBugButton.module.css'
 
 const SubmitBugButton = () => {
     const [isOpen, setIsOpen] = useState(false)
@@ -19,9 +20,9 @@ const SubmitBugButton = () => {
 
     return (
         <div>
-            <button onClick={onClick}>Submit a bug</button>
+            <button onClick={onClick} className={styles.SubmitBugButton}>Submit a bug</button>
             <Modal isOpen={isOpen} onRequestClose={close}>
-                <ReportForm onSuccess={onSuccess} />
+                <ReportForm onSuccess={onSuccess}/>
             </Modal>
         </div>
     )

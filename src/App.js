@@ -1,24 +1,14 @@
 import React, {useEffect} from 'react';
 import './App.css';
-import Room from "./features/tamagochi/Tamagochi";
-import {Switch, BrowserRouter, Route} from "react-router-dom";
+import Tamagochi from "./features/tamagochi/Tamagochi";
+import {BrowserRouter} from "react-router-dom";
 import Login from "./features/login/components/Login/Login";
-import {Provider, useDispatch, useSelector} from "react-redux";
-import store from "./store";
-import Me from "./features/users/components/Me/Me";
+import {useDispatch, useSelector} from "react-redux";
 import {checkAuth, selectIsAuthorized} from "./features/login/login.slice";
-import ReportsListWrapper from "./features/reports/components/ReportsListWrapper/ReportsListWrapper";
-import SubmitBugButton from "./features/reports/components/SubmitBugButton/SubmitBugButton";
+import Sidebar from "./components/Sidebar/Sidebar";
+import Header from "./components/Header/Header";
 
 function App() {
-    return (
-        <Provider store={store}>
-            <Game/>
-        </Provider>
-    );
-}
-
-function Game() {
     const dispatch = useDispatch()
     const isAuthorized = useSelector(selectIsAuthorized)
 
@@ -26,19 +16,26 @@ function Game() {
         dispatch(checkAuth())
     }, [dispatch])
 
-    return isAuthorized ? <BrowserRouter>
-        <Me/>
-        <Switch>
-            <Route exact path="/">
-                content
-                <Room />
-                <SubmitBugButton />
-            </Route>
-            <Route path="/reports">
-                <ReportsListWrapper />
-            </Route>
-        </Switch>
-    </BrowserRouter> : <Login/>
+    return isAuthorized ? (
+        <BrowserRouter>
+            {/*<Me/>*/}
+            {/*<Switch>*/}
+            {/*    <Route exact path="/">*/}
+            {/*        content*/}
+            {/*        <Tamagochi />*/}
+            {/*        <SubmitBugButton />*/}
+            {/*    </Route>*/}
+            {/*    <Route path="/reports">*/}
+            {/*        <ReportsListWrapper />*/}
+            {/*    </Route>*/}
+            {/*</Switch>*/}
+            <Header/>
+            <main>
+                <Sidebar/>
+                <Tamagochi/>
+            </main>
+        </BrowserRouter>
+    ) : <Login/>
 }
 
 export default App;

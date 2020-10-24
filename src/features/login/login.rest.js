@@ -11,6 +11,7 @@ export const requestLogin = async (username, password) => {
     })
     const authHeader = response.headers.get('Authorization')
     if (response.status !== 200 || authHeader == null) {
+        debugger
         throw Error('Auth failed')
     }
     const authToken = authHeader.slice(7)
