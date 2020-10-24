@@ -15,7 +15,7 @@ const ReportsList = ({reportsFilter}) => {
 
     return (
         <div>
-            {reportsIds.map(id => <Report id={id} />)}
+            {reportsIds.map(id => <Report key={id} id={id} />)}
         </div>
     )
 }

@@ -23,3 +23,16 @@
     margin: 20px 10% 20px;
     float: right;
 }
+
+.links {
+    position: fixed;
+    left: 400px;
+    top: -15px;
+    font-size: 2em;
+}
+
+
+
+.link {
+    color: white;
+}
