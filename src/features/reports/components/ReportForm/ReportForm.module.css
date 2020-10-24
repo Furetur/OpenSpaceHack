@@ -1,4 +1,39 @@
+.FormBackground {
+	position: absolute;
+	top: 80px;
+	left: 30%;
+	height: calc(100% - 80px);
+	width: 70%;
+	background: #333742;
+	z-index: 10;
+	-webkit-clip-path: polygon(
+		20% 0, 
+		100% 0, 
+		100% 100%, 
+		0 100%
+	);
+}
+
 .ReportForm {
+	position: inherit;
+	top: 20%;
+	left: 25%;
     border: 5px solid brown;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
     padding: 20px;
+}
+
+.ReportForm>label {
+	margin: 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.ReportForm>label>input, 
+.ReportForm>label>textarea {
+	margin: 5px;
 }

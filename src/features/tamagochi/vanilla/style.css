@@ -2,7 +2,7 @@ body {
 	background: #17343c;
 	color: #FFFFFF;
     text-decoration: none;
-    text-transform: capitalize;
+    text-transform: none;
 }
 
 .main {
