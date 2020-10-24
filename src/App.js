@@ -6,6 +6,7 @@ import {Provider, useDispatch, useSelector} from "react-redux";
 import store from "./store";
 import Me from "./features/users/components/Me/Me";
 import {checkAuth, selectIsAuthorized} from "./features/login/login.slice";
+import ReportsListWrapper from "./features/reports/components/ReportsListWrapper/ReportsListWrapper";
 
 function App() {
     return (
@@ -28,6 +29,9 @@ function Game() {
         <Switch>
             <Route exact path="/">
                 content
+            </Route>
+            <Route path="/reports">
+                <ReportsListWrapper />
             </Route>
         </Switch>
     </BrowserRouter> : <Login/>

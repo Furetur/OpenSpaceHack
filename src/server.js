@@ -54,12 +54,12 @@ const configureServer = () => createServer({
                 return new Response(401)
             }
             const author = request.queryParams.author
-            const verified = request.queryParams.verified == null ? null : request.queryParams.verified === true
+            const verified = request.queryParams.verified == null ? null : request.queryParams.verified === 'true'
 
             const filterAuthor = report => author == null || (author === 'me' && report.author.id === me.id) || (!isNaN(parseInt(author)) && report.author.id === parseInt(author))
             const filterVerified = report => verified == null || report.verified === verified
 
-            return schema.reports.all().filter(report => filterAuthor(report) && filterVerified(report))
+            return schema.reports.all().filter(report => filterAuthor(report) && filterVerified(report)).models
         })
 
         this.get('/reports/:id', (schema, request) => {
