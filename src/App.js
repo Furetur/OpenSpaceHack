@@ -1,44 +1,38 @@
 import React, {useEffect} from 'react';
 import './App.css';
-import Room from "./features/tamagochi/Tamagochi";
-import {Switch, BrowserRouter, Route} from "react-router-dom";
-import Login from "./features/login/components/Login/Login";
-import {Provider, useDispatch, useSelector} from "react-redux";
-import store from "./store";
-import Me from "./features/users/components/Me/Me";
-import {checkAuth, selectIsAuthorized} from "./features/login/login.slice";
-import ReportsListWrapper from "./features/reports/components/ReportsListWrapper/ReportsListWrapper";
-import SubmitBugButton from "./features/reports/components/SubmitBugButton/SubmitBugButton";
+import {Switch, Route, Redirect, BrowserRouter} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {checkAuth} from "./features/login/login.slice";
+import Header from "./components/Header/Header";
+import PageWithSideBar from "./components/PageWithSidebar/PageWithSidebar";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import AuthPage from "./features/login/components/AuthPage/AuthPage";
 
 function App() {
-    return (
-        <Provider store={store}>
-            <Game/>
-        </Provider>
-    );
-}
-
-function Game() {
     const dispatch = useDispatch()
-    const isAuthorized = useSelector(selectIsAuthorized)
 
     useEffect(() => {
         dispatch(checkAuth())
     }, [dispatch])
 
-    return isAuthorized ? <BrowserRouter>
-        <Me/>
-        <Switch>
-            <Route exact path="/">
-                content
-                <Room />
-                <SubmitBugButton />
-            </Route>
-            <Route path="/reports">
-                <ReportsListWrapper />
-            </Route>
-        </Switch>
-    </BrowserRouter> : <Login/>
+    return (
+        <BrowserRouter>
+            <Header/>
+            <main>
+                <Switch>
+                    <Route exact path="/" render={() => (
+                        <Redirect to="reports"/>
+                    )}/>
+                    <ProtectedRoute path={['/reports', '/submitBug', '/report/:id']}>
+                        <PageWithSideBar/>
+                    </ProtectedRoute>
+                    <Route path={['/login', '/signup']}>
+                        <AuthPage/>
+                    </Route>
+                </Switch>
+            </main>
+        </BrowserRouter>
+    )
 }
 
 export default App;

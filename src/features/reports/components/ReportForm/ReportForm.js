@@ -1,15 +1,11 @@
-import React, {useCallback, useState} from 'react'
-import usePostReport from "../../../reports.hooks";
-import Status from "../../../../../utils/Status";
+import React, {useCallback} from 'react'
+import usePostReport from "../../reports.hooks";
+import Status from "../../../../utils/Status";
 import {useDispatch} from "react-redux";
-import {receiveReport} from "../../../reports.slice";
+import {receiveReport} from "../../reports.slice";
 import styles from './ReportForm.module.css'
+import useInputValue from "../../../../utils/useInputValue";
 
-const useInputValue = (defaultValue = '') => {
-    const [value, setValue] = useState(defaultValue)
-    const onChange = useCallback((event) => setValue(event.target.value), [])
-    return [value, onChange]
-}
 
 const ReportForm = ({onSuccess = () => {}}) => {
     const dispatch = useDispatch()

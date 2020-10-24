@@ -1,0 +1,13 @@
+.Sidebar {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    height: 100%;
+    width: 25%;
+    background: #ffffff;
+    padding: 20px;
+    font-family: 'Open Sans', sans-serif;
+}
+.Sidebar * {
+    margin: 0;
+}

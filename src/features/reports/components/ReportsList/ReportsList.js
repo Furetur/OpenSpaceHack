@@ -13,11 +13,8 @@ const ReportsList = ({reportsFilter}) => {
         dispatch(fetchReports(reportsFilter))
     }, [dispatch, reportsFilter])
 
-    debugger
-
     return (
         <div>
-            <h2>Reports</h2>
             {reportsIds.map(id => <Report id={id} />)}
         </div>
     )

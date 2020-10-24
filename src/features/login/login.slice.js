@@ -16,9 +16,13 @@ export const checkAuth = createAsyncThunk('login/checkAuth', requestMe)
 const loginSlice = createSlice({
     name: 'login',
     initialState: {
-        authorized: false,
+        authorized: true,
     },
-    reducers: {},
+    reducers: {
+        setIsAuthorized(loginState, action) {
+            loginState.authorized = action.payload
+        }
+    },
     extraReducers: builder => {
         builder.addCase(tryLogin.fulfilled, loginState => {
             loginState.authorized = true
@@ -32,8 +36,9 @@ const loginSlice = createSlice({
         builder.addCase(checkAuth.fulfilled, loginState => {
             loginState.authorized = true
         })
-
     }
 })
+
+export const setIsAuthorized = loginSlice.actions.setIsAuthorized
 
 export default loginSlice.reducer

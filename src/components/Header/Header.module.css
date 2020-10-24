@@ -1,0 +1,25 @@
+.Header {
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: inline;
+    background: linear-gradient(to bottom, #1d212a 80%, #09a1d2 20%);
+}
+
+.logo {
+    margin: 15px 2% 15px;
+    height: 50px;
+    width: auto;
+    display: inline-block;
+}
+
+.profile {
+    color: #FFFFFF;
+    text-decoration: none;
+    text-transform: capitalize;
+    display: inline-block;
+    margin: 20px 10% 20px;
+    float: right;
+}
