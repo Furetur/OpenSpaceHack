@@ -7,12 +7,14 @@ import Header from "./components/Header/Header";
 import PageWithSideBar from "./components/PageWithSidebar/PageWithSidebar";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import AuthPage from "./features/login/components/AuthPage/AuthPage";
+import {fetchMe} from "./features/users/users.slice";
 
 function App() {
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(checkAuth())
+        dispatch(fetchMe())
     }, [dispatch])
 
     return (
@@ -23,7 +25,7 @@ function App() {
                     <Route exact path="/" render={() => (
                         <Redirect to="reports"/>
                     )}/>
-                    <ProtectedRoute path={['/reports', '/submitBug', '/report/:id']}>
+                    <ProtectedRoute path={['/reports', '/submitBug', '/report/:id', '/shop']}>
                         <PageWithSideBar/>
                     </ProtectedRoute>
                     <Route path={['/login', '/signup']}>

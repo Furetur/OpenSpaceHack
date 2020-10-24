@@ -10,7 +10,7 @@ const PageWithSideBar = () => {
         <>
             <Sidebar/>
             <Switch>
-                <Route path="/reports">
+                <Route path={['/reports', '/shop']}>
                     <Tamagochi/>
                 </Route>
                 <Route path="/submitBug">
