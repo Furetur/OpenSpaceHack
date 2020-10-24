@@ -4,8 +4,11 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import configureServer from "./server";
+import {production} from "./constants";
 
-configureServer()
+if (!production) {
+    configureServer()
+}
 
 ReactDOM.render(
   <React.StrictMode>

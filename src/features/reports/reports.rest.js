@@ -1,4 +1,5 @@
 import requestJson from "../../utils/requestJson";
+import postJson from "../../utils/postJson";
 
 export const requestSingleReport = (id) => requestJson(`reports/${id}`)
 
@@ -30,3 +31,5 @@ export const normalizeReport = (receivedReport) => {
 }
 
 export const normalizeReports = (receivedReports) => receivedReports.map(receivedReport => normalizeReport(receivedReport))
+
+export const postReport = (report) => postJson('report', report)

@@ -20,10 +20,46 @@ const configureServer = () => createServer({
     seeds(server) {
         server.create('user', me)
         server.create('user', otherUser)
-        server.create('report', {id: 0, title: 'Somebodys report', verified: false, author: otherUser})
-        server.create('report', {id: 1, title: 'Somebodys report. Verified', verified: true, author: otherUser})
-        server.create('report', {id: 2, title: 'My report', verified: false, author: me})
-        server.create('report', {id: 3, title: 'My report. Verified', verified: true, author: me})
+        server.create('report', {
+            id: 0,
+            testedSystem: 'product',
+            betaVersion: 'sds',
+            OSModel: 'osmodel',
+            description: 'asdsd',
+            bugName: 'Somebodys report',
+            verified: false,
+            username: otherUser.username
+        })
+        server.create('report', {
+            id: 1,
+            testedSystem: 'product',
+            betaVersion: 'sds',
+            OSModel: 'osmodel',
+            description: 'asdsd',
+            bugName: 'Somebodys report. Verified',
+            verified: true,
+            username: otherUser.username
+        })
+        server.create('report', {
+            id: 2,
+            testedSystem: 'product',
+            betaVersion: 'sds',
+            OSModel: 'osmodel',
+            description: 'asdsd',
+            bugName: 'My report',
+            verified: false,
+            username: me.username
+        })
+        server.create('report', {
+            id: 3,
+            testedSystem: 'product',
+            betaVersion: 'sds',
+            OSModel: 'osmodel',
+            description: 'asdsd',
+            bugName: 'My report. Verified',
+            verified: true,
+            username: me.username
+        })
     },
     routes() {
         this.post('/login', (schema, request) => {
@@ -65,6 +101,17 @@ const configureServer = () => createServer({
         this.get('/reports/:id', (schema, request) => {
             const id = request.params.id
             return schema.reports.find(id)
+        })
+        this.post('/report', (schema, request) => {
+            const body = JSON.parse(request.requestBody)
+            if (body.testedSystem !== 'a') {
+                return new Response(401)
+            } else {
+                return new Response(202, {}, {
+                    ...body,
+                    id: 0,
+                })
+            }
         })
     }
 })

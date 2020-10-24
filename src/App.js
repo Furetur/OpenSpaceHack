@@ -7,6 +7,8 @@ import store from "./store";
 import Me from "./features/users/components/Me/Me";
 import {checkAuth, selectIsAuthorized} from "./features/login/login.slice";
 import ReportsListWrapper from "./features/reports/components/ReportsListWrapper/ReportsListWrapper";
+import Room from "./features/room/Room";
+import SubmitBugButton from "./features/reports/components/SubmitBugButton/SubmitBugButton";
 
 function App() {
     return (
@@ -29,6 +31,8 @@ function Game() {
         <Switch>
             <Route exact path="/">
                 content
+                <Room />
+                <SubmitBugButton />
             </Route>
             <Route path="/reports">
                 <ReportsListWrapper />
