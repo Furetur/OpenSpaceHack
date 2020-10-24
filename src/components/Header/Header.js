@@ -18,6 +18,11 @@ const Header = () => {
                         Shop
                     </Link>
                 </li>
+                <li>
+                    <Link to="/inventory" className={styles.link}>
+                        Inventory
+                    </Link>
+                </li>
             </ul>
             <MyMoney />
             <div className={styles.profile} />
