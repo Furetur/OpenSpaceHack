@@ -11,13 +11,13 @@ const Report = ({id}) => {
     return report != null ? (
         <div className={styles.Report}>
             <div className={styles.image}>
-                <Link to={`report/${report.id}`}>
+                <Link to={`/report/${report.id}`}>
                     <img src={bugImg} alt="Bug"/>
                 </Link>
             </div>
             <div className={styles.content}>
                 <div className={styles.title}>
-                    <Link to={`report/${report.id}`}>{report.bugName}</Link>
+                    <Link to={`/report/${report.id}`}>{report.bugName}</Link>
                 </div>
                 <div className="star-rating" id="report1">
                     {report.verified === true ? 'Verified' : ''}
