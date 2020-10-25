@@ -55,7 +55,7 @@ const ReportForm = ({ onSuccess = () => {}, id }) => {
                             <input
                                 type="text"
                                 onChange={setProduct}
-                                value={report?.product ?? ''}
+                                value={report?.product ?? product}
                                 disabled={report != null}
                             />
                         </label>
@@ -64,7 +64,7 @@ const ReportForm = ({ onSuccess = () => {}, id }) => {
                             <input
                                 type="text"
                                 onChange={setVersion}
-                                value={report?.betaVersion ?? ''}
+                                value={report?.betaVersion ?? version}
                                 disabled={report != null}
                             />
                         </label>
@@ -73,7 +73,7 @@ const ReportForm = ({ onSuccess = () => {}, id }) => {
                             <input
                                 type="text"
                                 onChange={setOs}
-                                value={report?.OSModel ?? ''}
+                                value={report?.OSModel ?? os}
                                 disabled={report != null}
                             />
                         </label>
@@ -82,7 +82,7 @@ const ReportForm = ({ onSuccess = () => {}, id }) => {
                             <input
                                 type="text"
                                 onChange={setTitle}
-                                value={report?.bugName ?? ''}
+                                value={report?.bugName ?? title}
                                 disabled={report != null}
                             />
                         </label>
@@ -94,7 +94,7 @@ const ReportForm = ({ onSuccess = () => {}, id }) => {
                                 cols="30"
                                 rows="10"
                                 onChange={setDescription}
-                                value={report?.description ?? ''}
+                                value={report?.description ?? description}
                                 disabled={report != null}
                             />
                         </label>
