@@ -34,33 +34,47 @@ const ReportForm = ({onSuccess = () => {}}) => {
     }, [description, onOk, os, postReport, product, title, version])
 
     return (
-        <form className={styles.ReportForm}>
-            <h2>Submit a bug</h2>
-            <label>
-                Product
-                <input type="text" onChange={setProduct}/>
-            </label>
-            <label>
-                Version
-                <input type="text" onChange={setVersion}/>
-            </label>
-            <label>
-                OS
-                <input type="text" onChange={setOs}/>
-            </label>
-            <label>
-                Title
-                <input type="text" onChange={setTitle}/>
-            </label>
-            <label>
-                Description
-                <textarea cols="30" rows="10" onChange={setDescription}>
-                </textarea>
-            </label>
-            <button onClick={submit}>Submit</button>
-            {status === Status.FAILED && <span>Failed</span>}
-            {status === Status.OK && <span>OK</span>}
-        </form>
+        <div className={styles.FormBackground}>
+            <form className={styles.ReportForm}>
+                <h2>Submit a bug</h2>
+                <div className={styles.ReportFormRow}>
+                    <div className={styles.ReportFormCol}>
+                        <label>
+                            Product
+                            <input type="text" onChange={setProduct}/>
+                        </label>
+                        <label>
+                            Version
+                            <input type="text" onChange={setVersion}/>
+                        </label>
+                        <label>
+                            OS
+                            <input type="text" onChange={setOs}/>
+                        </label>
+                        <label>
+                            Title
+                            <input type="text" onChange={setTitle}/>
+                        </label>
+                    </div>
+                    <div className={styles.ReportFormCol}>
+                        <label>
+                            Description
+                            <textarea cols="30" rows="10" onChange={setDescription}>
+                            </textarea>
+                        </label>
+                    </div>
+                    <div className={styles.ReportFormCol}>
+                        <label>
+                            Upload image
+                            <input type="file" name="file"/><br />
+                        </label>
+                    </div>
+                </div>
+                <button onClick={submit} className={styles.SubmitButton}>Submit</button>
+                {status === Status.FAILED && <span>Failed</span>}
+                {status === Status.OK && <span>OK</span>}
+            </form>
+        </div>
     )
 }
 
