@@ -34,3 +34,11 @@ export const normalizeReports = (receivedReports) =>
     receivedReports.map((receivedReport) => normalizeReport(receivedReport))
 
 export const postReport = (report) => postJson('report', report)
+
+export const parseReportFromRest = (receivedReport) => ({
+    testedSystem: receivedReport.tested_system,
+        betaVersion: receivedReport.beta_version,
+    bugName: receivedReport.bug_name,
+    OSModel: receivedReport.os_model,
+    description: receivedReport.description,
+})

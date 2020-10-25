@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { receiveReport, selectReport } from '../../reports.slice'
 import styles from './ReportForm.module.css'
 import useInputValue from '../../../../utils/useInputValue'
+import {parseReportFromRest} from "../../reports.rest";
 
 const ReportForm = ({ onSuccess = () => {}, id }) => {
     const dispatch = useDispatch()
@@ -20,28 +21,43 @@ const ReportForm = ({ onSuccess = () => {}, id }) => {
     const [description, setDescription] = useInputValue()
 
     const onOk = useCallback(
-        (report) => {
+        (receivedReport) => {
+            const report = parseReportFromRest(receivedReport)
             dispatch(receiveReport(report))
             onSuccess()
         },
         [dispatch, onSuccess]
     )
 
+    const fakeAddReportAnyway = useCallback((report) => () => {
+        dispatch(receiveReport({
+            ...report,
+            id: 100,
+        }))
+    }, [dispatch])
+
     const submit = useCallback(
         (e) => {
             e.preventDefault()
             postReport(
                 {
+                    tested_system: product,
+                    beta_version: version,
+                    bug_name: title,
+                    os_model: os,
+                    description,
+                },
+                onOk,
+                fakeAddReportAnyway({
                     testedSystem: product,
                     betaVersion: version,
                     bugName: title,
                     OSModel: os,
                     description,
-                },
-                onOk
+                })
             )
         },
-        [description, onOk, os, postReport, product, title, version]
+        [description, fakeAddReportAnyway, onOk, os, postReport, product, title, version]
     )
 
     return (

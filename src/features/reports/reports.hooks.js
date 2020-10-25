@@ -15,16 +15,13 @@ const usePostReport = () => {
                 const response = await postReport(report)
                 const json = await response.json()
                 if (isStatusOK(response.status)) {
-                    debugger
                     setStatus(Status.OK)
                     onSuccess(json)
                 } else {
-                    debugger
                     setStatus(Status.FAILED)
                     onFail()
                 }
             } catch (e) {
-                debugger
                 setStatus(Status.FAILED)
                 onFail()
             }
