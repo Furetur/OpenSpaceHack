@@ -1,15 +1,33 @@
 import {createServer, Response, Model} from 'miragejs'
+import {Role} from "./features/users/users.types";
+import {getShopItemPrice} from "./features/shop/shop.utils";
 
 const me = {
     id: 0,
     username: 'user',
-    points: 10,
+    first_name: 'Admin',
+    second_name: 'Adminovich',
+    last_name: 'Adminov',
+    role: Role.ADMIN,
+    money: 100,
+    petId: 0,
+    petRank: 100,
+    inventory: [0, 1, 0, 0, 1],
+    pet_hat: 0,
 }
 
 const otherUser = {
     id: 1,
-    username: 'otheruser',
-    points: 20
+    username: 'user2',
+    first_name: 'Loser',
+    second_name: 'Loh',
+    last_name: 'Chmo',
+    role: Role.USER,
+    money: 0,
+    petId: 0,
+    petRank: 100,
+    inventory: [],
+    pet_hat: undefined,
 }
 
 const configureServer = () => createServer({
@@ -98,9 +116,9 @@ const configureServer = () => createServer({
             return schema.reports.all().filter(report => filterAuthor(report) && filterVerified(report)).models
         })
 
-        this.get('/reports/:id', (schema, request) => {
+        this.get('/report/:id', (schema, request) => {
             const id = request.params.id
-            return schema.reports.find(id)
+            return schema.reports.find(id).toJSON()
         })
         this.post('/report', (schema, request) => {
             const body = JSON.parse(request.requestBody)
@@ -113,6 +131,16 @@ const configureServer = () => createServer({
                 })
             }
         })
+        this.post('/buy', (schema, request) => {
+            const id = parseInt(request.requestBody)
+            const price = getShopItemPrice(id)
+            if (me.money >= price) {
+                return new Response(202, {}, [...me.inventory, id])
+            } else {
+                return new Response(401)
+            }
+        })
+        this.post('/skin', me)
     }
 })
 

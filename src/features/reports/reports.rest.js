@@ -1,7 +1,7 @@
 import requestJson from "../../utils/requestJson";
 import postJson from "../../utils/postJson";
 
-export const requestSingleReport = (id) => requestJson(`reports/${id}`)
+export const requestSingleReport = (id) => requestJson(`report/${id}`)
 
 /**
  *

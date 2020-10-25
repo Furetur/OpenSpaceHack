@@ -1,8 +1,8 @@
 import {createAsyncThunk, createEntityAdapter, createSelector, createSlice} from "@reduxjs/toolkit";
 import {postReport, requestReports, requestSingleReport} from "./reports.rest";
-import {selectMyId} from "../me/me.slice";
 import {filterReport} from "./reports.utils";
 import Status from "../../utils/Status";
+import {selectMyId} from "../users/users.slice";
 
 const reportsAdapter = createEntityAdapter()
 

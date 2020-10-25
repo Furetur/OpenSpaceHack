@@ -1,39 +1,40 @@
 import React, {useEffect} from 'react';
 import './App.css';
-import Tamagochi from "./features/tamagochi/Tamagochi";
 import {Switch, Route, Redirect, BrowserRouter} from "react-router-dom";
-import Login from "./features/login/components/Login/Login";
-import {useDispatch, useSelector} from "react-redux";
-import {checkAuth, selectIsAuthorized} from "./features/login/login.slice";
-import Sidebar from "./components/Sidebar/Sidebar";
+import {useDispatch} from "react-redux";
+import {checkAuth} from "./features/login/login.slice";
 import Header from "./components/Header/Header";
-import ReportForm from "./features/reports/components/ReportForm/ReportForm";
+import PageWithSideBar from "./components/PageWithSidebar/PageWithSidebar";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import AuthPage from "./features/login/components/AuthPage/AuthPage";
+import {fetchMe} from "./features/users/users.slice";
 
 function App() {
     const dispatch = useDispatch()
-    const isAuthorized = useSelector(selectIsAuthorized)
 
     useEffect(() => {
         dispatch(checkAuth())
+        dispatch(fetchMe())
     }, [dispatch])
 
-    return isAuthorized ? (
+    return (
         <BrowserRouter>
-            <Redirect exact from="/" to="reports"/>
             <Header/>
             <main>
-                <Sidebar/>
                 <Switch>
-                    <Route path="/reports">
-                        <Tamagochi/>
-                    </Route>
-                    <Route path="/submitBug">
-                        <ReportForm />
+                    <Route exact path="/" render={() => (
+                        <Redirect to="reports"/>
+                    )}/>
+                    <ProtectedRoute path={['/reports', '/submitBug', '/report/:id', '/shop', '/inventory']}>
+                        <PageWithSideBar/>
+                    </ProtectedRoute>
+                    <Route path={['/login', '/signup']}>
+                        <AuthPage/>
                     </Route>
                 </Switch>
             </main>
         </BrowserRouter>
-    ) : <Login/>
+    )
 }
 
 export default App;
