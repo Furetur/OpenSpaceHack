@@ -1,23 +1,23 @@
 import React from 'react'
-import Sidebar from "../Sidebar/Sidebar";
-import {Route, Switch} from "react-router-dom";
-import Tamagochi from "../../features/tamagochi/Tamagochi";
-import ReportForm from "../../features/reports/components/ReportForm/ReportForm";
-import FullScreenReport from "../../features/reports/components/FullScreenReport/FullScreenReport";
+import Sidebar from '../Sidebar/Sidebar'
+import { Route, Switch } from 'react-router-dom'
+import Tamagochi from '../../features/tamagochi/Tamagochi'
+import ReportForm from '../../features/reports/components/ReportForm/ReportForm'
+import FullScreenReport from '../../features/reports/components/FullScreenReport/FullScreenReport'
 
 const PageWithSideBar = () => {
     return (
         <>
-            <Sidebar/>
+            <Sidebar />
             <Switch>
                 <Route path={['/reports', '/shop', '/inventory']}>
-                    <Tamagochi/>
+                    <Tamagochi />
                 </Route>
                 <Route path="/submitBug">
-                    <ReportForm/>
+                    <ReportForm />
                 </Route>
                 <Route path="/report/:id">
-                    <FullScreenReport/>
+                    <FullScreenReport />
                 </Route>
             </Switch>
         </>

@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react'
-import {getAllShopItemsIds} from "../../shop.utils";
-import ShopItem from "../ShopItem/ShopItem";
-import {useDispatch} from "react-redux";
-import {fetchMe} from "../../../users/users.slice";
+import React, { useEffect } from 'react'
+import { getAllShopItemsIds } from '../../shop.utils'
+import ShopItem from '../ShopItem/ShopItem'
+import { useDispatch } from 'react-redux'
+import { fetchMe } from '../../../users/users.slice'
 
 const Shop = () => {
     const dispatch = useDispatch()
@@ -15,7 +15,9 @@ const Shop = () => {
 
     return (
         <div>
-            {allShopItemIds.map(id => <ShopItem key={id} id={id} />)}
+            {allShopItemIds.map((id) => (
+                <ShopItem key={id} id={id} />
+            ))}
         </div>
     )
 }

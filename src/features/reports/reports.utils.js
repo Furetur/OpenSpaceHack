@@ -3,10 +3,8 @@
  * @param {string | undefined} author
  * @param {string | undefined} verified
  */
-export const parseReportsFilter = (author, verified) => makeReportsFilter(
-    parseAuthor(author),
-    parseVerified(verified)
-)
+export const parseReportsFilter = (author, verified) =>
+    makeReportsFilter(parseAuthor(author), parseVerified(verified))
 
 /**
  *
@@ -52,7 +50,7 @@ const parseVerified = (verified) => {
  */
 export const makeReportsFilter = (author, verified) => ({
     ...makeAuthorFilter(author),
-    ...makeVerificationFilter(verified)
+    ...makeVerificationFilter(verified),
 })
 
 /**
@@ -61,13 +59,13 @@ export const makeReportsFilter = (author, verified) => ({
  * @returns AuthorFilter
  */
 const makeAuthorFilter = (author) => {
-    if (author === "me") {
+    if (author === 'me') {
         return {
-            me: true
+            me: true,
         }
     } else if (typeof author === 'number') {
         return {
-            authorId: author
+            authorId: author,
         }
     } else {
         return {}
@@ -87,7 +85,6 @@ const makeVerificationFilter = (verified) => {
             verified,
         }
     }
-
 }
 
 /**
@@ -96,7 +93,9 @@ const makeVerificationFilter = (verified) => {
  * @param {ReportsFilter} reportsFilter
  * @param myId
  */
-export const filterReport = (reportsFilter, report, myId) => isReportWithRequestedAuthor(reportsFilter, report, myId) && isReportWithRequestedVerification(reportsFilter, report)
+export const filterReport = (reportsFilter, report, myId) =>
+    isReportWithRequestedAuthor(reportsFilter, report, myId) &&
+    isReportWithRequestedVerification(reportsFilter, report)
 
 /**
  * @typedef {number} UserId
@@ -105,7 +104,7 @@ export const filterReport = (reportsFilter, report, myId) => isReportWithRequest
  * @param myId
  */
 export const isReportWithRequestedAuthor = (authorFilter, report, myId) => {
-    const {me, authorId} = authorFilter
+    const { me, authorId } = authorFilter
     if (me === true) {
         return report.authorId === myId
     } else if (authorId != null) {
@@ -120,7 +119,10 @@ export const isReportWithRequestedAuthor = (authorFilter, report, myId) => {
  * @param {VerificationFilter} verificationFilter
  * @param report
  */
-export const isReportWithRequestedVerification = (verificationFilter, report) => {
-    const {verified} = verificationFilter
+export const isReportWithRequestedVerification = (
+    verificationFilter,
+    report
+) => {
+    const { verified } = verificationFilter
     return verified == null || report.verified === verified
 }

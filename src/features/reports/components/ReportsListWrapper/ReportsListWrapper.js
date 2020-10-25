@@ -1,10 +1,10 @@
 import React from 'react'
-import {useLocation} from 'react-router-dom'
-import {parseReportsFilter} from "../../reports.utils";
-import ReportsList from "../ReportsList/ReportsList";
+import { useLocation } from 'react-router-dom'
+import { parseReportsFilter } from '../../reports.utils'
+import ReportsList from '../ReportsList/ReportsList'
 
 const useQuery = () => {
-    return new URLSearchParams(useLocation().search);
+    return new URLSearchParams(useLocation().search)
 }
 
 const useReportsFilter = () => {
@@ -17,9 +17,7 @@ const useReportsFilter = () => {
 const ReportsListWrapper = () => {
     const reportsFilter = useReportsFilter()
 
-    return (
-        <ReportsList reportsFilter={reportsFilter} />
-    )
+    return <ReportsList reportsFilter={reportsFilter} />
 }
 
 export default ReportsListWrapper

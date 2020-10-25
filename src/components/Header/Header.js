@@ -1,12 +1,11 @@
 import React from 'react'
 import logo from './img/logo.png'
 import styles from './Header.module.css'
-import {Link} from "react-router-dom";
-import MyMoney from "../../features/users/components/MyMoney/MyMoney";
-import SignOutButton from "../SignOutButton/SignOutButton";
+import { Link } from 'react-router-dom'
+import MyMoney from '../../features/users/components/MyMoney/MyMoney'
+import SignOutButton from '../SignOutButton/SignOutButton'
 
 const Header = () => {
-
     return (
         <div className={styles.Header}>
             <div className={styles.logo}>

@@ -1,9 +1,9 @@
-import React, {useCallback, useMemo} from 'react'
-import {selectCanBuyItem} from "../../shop.selectors";
-import {useDispatch, useSelector} from "react-redux";
-import {buyItem} from "../../shop.actions";
+import React, { useCallback, useMemo } from 'react'
+import { selectCanBuyItem } from '../../shop.selectors'
+import { useDispatch, useSelector } from 'react-redux'
+import { buyItem } from '../../shop.actions'
 
-const BuyItemButton = ({id}) => {
+const BuyItemButton = ({ id }) => {
     const dispatch = useDispatch()
     const selector = useMemo(() => selectCanBuyItem(id), [id])
     const canBuy = useSelector(selector)

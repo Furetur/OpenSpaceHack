@@ -1,12 +1,12 @@
-import React, {useCallback} from 'react'
-import {useDispatch} from "react-redux";
-import useInputValue from "../../../../../utils/useInputValue";
-import {HOST} from "../../../../../constants";
-import {saveAuthToken} from "../../../login.utils";
-import {receiveUser} from "../../../../users/users.slice";
-import {setIsAuthorized} from "../../../login.slice";
+import React, { useCallback } from 'react'
+import { useDispatch } from 'react-redux'
+import useInputValue from '../../../../../utils/useInputValue'
+import { HOST } from '../../../../../constants'
+import { saveAuthToken } from '../../../login.utils'
+import { receiveUser } from '../../../../users/users.slice'
+import { setIsAuthorized } from '../../../login.slice'
 
-const SignUp = ({onSuccess = () => {}}) => {
+const SignUp = ({ onSuccess = () => {} }) => {
     const dispatch = useDispatch()
 
     const [username, setUsername] = useInputValue()
@@ -26,7 +26,7 @@ const SignUp = ({onSuccess = () => {}}) => {
                 second_name: secondName,
                 last_name: lastName,
                 pet_name: petName,
-            })
+            }),
         })
         const authHeader = response.headers.get('Authorization')
         if (authHeader != null) {
@@ -37,33 +37,42 @@ const SignUp = ({onSuccess = () => {}}) => {
             dispatch(setIsAuthorized(true))
             onSuccess()
         }
-    }, [dispatch, firstName, lastName, onSuccess, password, petName, secondName, username])
+    }, [
+        dispatch,
+        firstName,
+        lastName,
+        onSuccess,
+        password,
+        petName,
+        secondName,
+        username,
+    ])
 
     return (
         <div>
             <label>
                 username
-                <input type="text" onChange={setUsername}/>
+                <input type="text" onChange={setUsername} />
             </label>
             <label>
                 password
-                <input type="text" onChange={setPassword}/>
+                <input type="text" onChange={setPassword} />
             </label>
             <label>
                 first name
-                <input type="text" onChange={setFirstName}/>
+                <input type="text" onChange={setFirstName} />
             </label>
             <label>
                 secondName
-                <input type="text" onChange={setSecondName}/>
+                <input type="text" onChange={setSecondName} />
             </label>
             <label>
                 lastName
-                <input type="text" onChange={setLastName}/>
+                <input type="text" onChange={setLastName} />
             </label>
             <label>
                 petName
-                <input type="text" onChange={setPetName}/>
+                <input type="text" onChange={setPetName} />
             </label>
             <button onClick={onSubmit}>Sign Up</button>
         </div>

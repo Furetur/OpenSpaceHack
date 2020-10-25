@@ -3,5 +3,5 @@ module.exports = function override(config) {
         test: /\.html$/i,
         loader: 'html-loader',
     })
-    return config;
+    return config
 }

@@ -1,53 +1,53 @@
 body {
-	background: #17343c;
-	color: #FFFFFF;
+    background: #17343c;
+    color: #ffffff;
     text-decoration: none;
     text-transform: none;
 }
 
 .main {
-	position: fixed;
-	top: 80px;
-	left: 30%;
-	height: 100%;
-	width: 70%;
-	background: #333742;
-	z-index: 10;
-	-webkit-clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+    position: fixed;
+    top: 80px;
+    left: 30%;
+    height: 100%;
+    width: 70%;
+    background: #333742;
+    z-index: 10;
+    -webkit-clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
 }
 .main-div {
-	position: relative;
-	top: 0;
-	left: 10%;
-	height: 100%;
-	width: 90%;
-	background: #19867f;
-	z-index: 20;
-	-webkit-clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+    position: relative;
+    top: 0;
+    left: 10%;
+    height: 100%;
+    width: 90%;
+    background: #19867f;
+    z-index: 20;
+    -webkit-clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
 }
 /*Tamagochi*/
 .tamagochi {
-	position: relative;
-	top: 0;
-	left: 15%;
-	height: 100%;
-	width: 85%;
-	transform: scale(-1, 1);	
+    position: relative;
+    top: 0;
+    left: 15%;
+    height: 100%;
+    width: 85%;
+    transform: scale(-1, 1);
 }
-.tamagochi>img {
-	position: absolute;
-	top: 40%;
-	left: 50%;
-	margin-right: -50%;
-	transform: translate(-50%, -45%);
-	width: 70%;
+.tamagochi > img {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -45%);
+    width: 70%;
 }
 
 .tamagochi-clothes > img {
-	position: absolute;
-	top: 40%;
-	left: 50%;
-	margin-right: -50%;
-	transform: translate(-50%, -45%);
-	width: 500px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -45%);
+    width: 500px;
 }

@@ -2,11 +2,11 @@ import img0 from './img/0.png'
 import img1 from './img/1.png'
 
 export const ItemType = {
-    HAT:  'hat',
+    HAT: 'hat',
 }
 
 export const itemTypesToUserPropertyNames = {
-    [ItemType.HAT]: 'petHat'
+    [ItemType.HAT]: 'petHat',
 }
 
 const shopConfig = {
@@ -21,7 +21,7 @@ const shopConfig = {
         type: ItemType.HAT,
         img: img1,
         price: 20,
-    }
+    },
 }
 
 export default shopConfig

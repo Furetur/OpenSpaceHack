@@ -12,11 +12,11 @@
     border-radius: 15px;
     font-size: 24px;
     color: #ffffff;
-    margin-left:auto;
+    margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
     text-align: center;
 }
 .SubmitBugButton:hover {
-    background: #535E6E;
+    background: #535e6e;
 }

@@ -1,10 +1,10 @@
 import React from 'react'
 import styles from './Sidebar.module.css'
-import SubmitBugButton from "../../features/reports/components/SubmitBugButton/SubmitBugButton";
-import ReportsListWrapper from "../../features/reports/components/ReportsListWrapper/ReportsListWrapper";
-import {Route} from "react-router-dom";
-import Shop from "../../features/shop/components/Shop/Shop";
-import Inventory from "../../features/inventory/components/Inventory/Inventory";
+import SubmitBugButton from '../../features/reports/components/SubmitBugButton/SubmitBugButton'
+import ReportsListWrapper from '../../features/reports/components/ReportsListWrapper/ReportsListWrapper'
+import { Route } from 'react-router-dom'
+import Shop from '../../features/shop/components/Shop/Shop'
+import Inventory from '../../features/inventory/components/Inventory/Inventory'
 
 const Sidebar = () => {
     return (

@@ -1,5 +1,5 @@
-import requestJson from "../../utils/requestJson";
-import postJson from "../../utils/postJson";
+import requestJson from '../../utils/requestJson'
+import postJson from '../../utils/postJson'
 
 export const requestSingleReport = (id) => requestJson(`report/${id}`)
 
@@ -21,15 +21,16 @@ export const requestReports = (reportsFilter) => {
 }
 
 export const normalizeReport = (receivedReport) => {
-    const {id, title, verified, author} = receivedReport
+    const { id, title, verified, author } = receivedReport
     return {
         id,
         title,
         verified,
-        authorId: author.id
+        authorId: author.id,
     }
 }
 
-export const normalizeReports = (receivedReports) => receivedReports.map(receivedReport => normalizeReport(receivedReport))
+export const normalizeReports = (receivedReports) =>
+    receivedReports.map((receivedReport) => normalizeReport(receivedReport))
 
 export const postReport = (report) => postJson('report', report)

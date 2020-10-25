@@ -1,22 +1,27 @@
-import {createAsyncThunk, createEntityAdapter, createSelector, createSlice} from "@reduxjs/toolkit";
-import {requestMe} from "./users.rest";
-import {buyItem} from "../shop/shop.actions";
-import {parseUserFromRest} from "./users.utils";
+import {
+    createAsyncThunk,
+    createEntityAdapter,
+    createSelector,
+    createSlice,
+} from '@reduxjs/toolkit'
+import { requestMe } from './users.rest'
+import { buyItem } from '../shop/shop.actions'
+import { parseUserFromRest } from './users.utils'
 import {
     getShopItemPrice,
     getShopItemType,
     getUserPropertyNameForItemType,
-    getUserPropertyNameForShopItem
-} from "../shop/shop.utils";
-import {putOnItem} from "../inventory/inventory.actions";
+    getUserPropertyNameForShopItem,
+} from '../shop/shop.utils'
+import { putOnItem } from '../inventory/inventory.actions'
 
-const selectUsersSlice = state => state.users
+const selectUsersSlice = (state) => state.users
 
 const usersAdapter = createEntityAdapter()
 
 export const selectMyId = createSelector(
     selectUsersSlice,
-    usersState => usersState.myId
+    (usersState) => usersState.myId
 )
 
 export const fetchMe = createAsyncThunk('fetchMe', requestMe)
@@ -24,28 +29,26 @@ export const fetchMe = createAsyncThunk('fetchMe', requestMe)
 export const selectMe = createSelector(
     selectMyId,
     selectUsersSlice,
-    (id, users) => id == null ? undefined : users.entities[id]
+    (id, users) => (id == null ? undefined : users.entities[id])
 )
 
-export const selectMyMoney = createSelector(
-    selectMe,
-    me => me?.money ?? 0
-)
+export const selectMyMoney = createSelector(selectMe, (me) => me?.money ?? 0)
 
 export const selectMyInventory = createSelector(
     selectMe,
-    me => me?.inventory ?? []
+    (me) => me?.inventory ?? []
 )
 
-export const selectMyClothingItem = (itemType) => createSelector(
-    selectMe,
-    me => me != null ? me[getUserPropertyNameForItemType(itemType)] : undefined
-)
+export const selectMyClothingItem = (itemType) =>
+    createSelector(selectMe, (me) =>
+        me != null ? me[getUserPropertyNameForItemType(itemType)] : undefined
+    )
 
-export const selectIsClothingItemOnMe = (itemId) => createSelector(
-    selectMyClothingItem(getShopItemType(itemId)),
-    myClothingItemIdOfSameType => myClothingItemIdOfSameType === itemId
-)
+export const selectIsClothingItemOnMe = (itemId) =>
+    createSelector(
+        selectMyClothingItem(getShopItemType(itemId)),
+        (myClothingItemIdOfSameType) => myClothingItemIdOfSameType === itemId
+    )
 
 const usersSlice = createSlice({
     name: 'users',
@@ -55,9 +58,9 @@ const usersSlice = createSlice({
     reducers: {
         receiveUser(usersState, action) {
             usersAdapter.upsertOne(usersState, action.payload)
-        }
+        },
     },
-    extraReducers: builder => {
+    extraReducers: (builder) => {
         builder.addCase(fetchMe.fulfilled, (usersState, action) => {
             const user = parseUserFromRest(action.payload)
             usersState.myId = user.id
@@ -68,7 +71,9 @@ const usersSlice = createSlice({
 
             if (myId != null && usersState.entities[myId] != null) {
                 usersState.entities[myId].inventory = action.payload
-                usersState.entities[myId].money -= getShopItemPrice(action.meta.arg)
+                usersState.entities[myId].money -= getShopItemPrice(
+                    action.meta.arg
+                )
             }
         })
         builder.addCase(putOnItem.pending, (usersState, action) => {
@@ -83,7 +88,7 @@ const usersSlice = createSlice({
             const user = parseUserFromRest(action.payload)
             usersAdapter.upsertOne(usersState, user)
         })
-    }
+    },
 })
 
 export const receiveUser = usersSlice.actions.receiveUser

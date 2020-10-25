@@ -16,7 +16,7 @@
 }
 
 .profile {
-    color: #FFFFFF;
+    color: #ffffff;
     text-decoration: none;
     text-transform: capitalize;
     display: inline-block;
@@ -33,8 +33,6 @@
     list-style: none;
     display: flex;
 }
-
-
 
 .link {
     margin-right: 10px;

@@ -1,13 +1,13 @@
-import React, {useEffect} from 'react'
-import {useParams} from "react-router";
-import {useDispatch} from "react-redux";
-import {fetchSingleReport} from "../../reports.slice";
+import React, { useEffect } from 'react'
+import { useParams } from 'react-router'
+import { useDispatch } from 'react-redux'
+import { fetchSingleReport } from '../../reports.slice'
 import styles from './FullScreenReport.module.css'
-import ReportForm from "../ReportForm/ReportForm";
+import ReportForm from '../ReportForm/ReportForm'
 
 const FullScreenReport = () => {
     const dispatch = useDispatch()
-    const {id} = useParams()
+    const { id } = useParams()
 
     useEffect(() => {
         dispatch(fetchSingleReport(id))
