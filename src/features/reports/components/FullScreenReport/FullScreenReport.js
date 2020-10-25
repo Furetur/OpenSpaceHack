@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react'
 import {useParams} from "react-router";
-import Report from "../Report/Report";
 import {useDispatch} from "react-redux";
 import {fetchSingleReport} from "../../reports.slice";
 import styles from './FullScreenReport.module.css'
+import ReportForm from "../ReportForm/ReportForm";
 
 const FullScreenReport = () => {
     const dispatch = useDispatch()
@@ -15,7 +15,7 @@ const FullScreenReport = () => {
 
     return (
         <div className={styles.FullScreenReport}>
-            <Report id={id} />
+            <ReportForm id={id} />
         </div>
     )
 }
