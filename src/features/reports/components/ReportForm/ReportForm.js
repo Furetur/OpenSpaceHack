@@ -32,7 +32,7 @@ const ReportForm = ({ onSuccess = () => {}, id }) => {
     const fakeAddReportAnyway = useCallback((report) => () => {
         dispatch(receiveReport({
             ...report,
-            id: 100,
+            id: Math.floor(Math.random() * 100),
         }))
     }, [dispatch])
 
