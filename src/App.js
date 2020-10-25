@@ -25,7 +25,7 @@ function App() {
                     <Route exact path="/" render={() => (
                         <Redirect to="reports"/>
                     )}/>
-                    <ProtectedRoute path={['/reports', '/submitBug', '/report/:id', '/shop']}>
+                    <ProtectedRoute path={['/reports', '/submitBug', '/report/:id', '/shop', '/inventory']}>
                         <PageWithSideBar/>
                     </ProtectedRoute>
                     <Route path={['/login', '/signup']}>

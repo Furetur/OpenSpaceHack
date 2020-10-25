@@ -9,4 +9,5 @@ export const parseUserFromRest = (receivedUser) => ({
     petId: receivedUser.pet_id,
     petRank: receivedUser.pet_rank,
     inventory: receivedUser.inventory,
+    petHat: receivedUser.pet_hat,
 })

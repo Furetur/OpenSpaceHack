@@ -12,7 +12,8 @@ const me = {
     money: 100,
     petId: 0,
     petRank: 100,
-    inventory: [0, 1, 0, 0, 1]
+    inventory: [0, 1, 0, 0, 1],
+    pet_hat: 0,
 }
 
 const otherUser = {
@@ -26,6 +27,7 @@ const otherUser = {
     petId: 0,
     petRank: 100,
     inventory: [],
+    pet_hat: undefined,
 }
 
 const configureServer = () => createServer({
@@ -138,6 +140,7 @@ const configureServer = () => createServer({
                 return new Response(401)
             }
         })
+        this.post('/skin', me)
     }
 })
 

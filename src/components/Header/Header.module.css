@@ -29,10 +29,14 @@
     left: 400px;
     top: -15px;
     font-size: 2em;
+
+    list-style: none;
+    display: flex;
 }
 
 
 
 .link {
+    margin-right: 10px;
     color: white;
 }
