@@ -79,7 +79,10 @@ const usersSlice = createSlice({
                 usersState.entities[myId][propertyName] = itemId
             }
         })
-
+        builder.addCase(putOnItem.fulfilled, (usersState, action) => {
+            const user = parseUserFromRest(action.payload)
+            usersAdapter.upsertOne(usersState, user)
+        })
     }
 })
 
