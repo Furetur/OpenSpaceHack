@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSelector, createSlice} from "@reduxjs/toolkit";
 import {requestMe} from "../users/users.rest";
+import {clearAuthToken} from "./login.utils";
 
 const selectLoginSlice = state => state.login
 
@@ -31,5 +32,10 @@ const loginSlice = createSlice({
 })
 
 export const setIsAuthorized = loginSlice.actions.setIsAuthorized
+
+export const signOut = () => dispatch => {
+    clearAuthToken()
+    dispatch(setIsAuthorized(false))
+}
 
 export default loginSlice.reducer
