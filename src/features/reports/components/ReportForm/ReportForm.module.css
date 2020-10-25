@@ -17,23 +17,73 @@
 .ReportForm {
 	position: inherit;
 	top: 20%;
-	left: 25%;
-    border: 5px solid brown;
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    justify-content: flex-start;
+	margin-left: 20%;
+    border: 5px solid #8393A3;
+    border-radius: 20px;
     padding: 20px;
 }
 
-.ReportForm>label {
-	margin: 5px;
+.ReportForm>h2 {
+	font-size: 28px;
+	font-family: 
+	'Open Sans', 
+	sans-serif;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.ReportFormRow {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 5px;
+}
+
+.ReportFormCol {
+	margin: 5px 25px 10px 25px;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 }
 
-.ReportForm>label>input, 
-.ReportForm>label>textarea {
+.ReportFormCol>label {
 	margin: 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	font-size: 20px;
+	font-family: 
+	'Open Sans', 
+	sans-serif;
+}
+
+.ReportFormCol>label>input, 
+.ReportFormCol>label>textarea {
+	font-size: 15px;
+	font-family: 
+	'Open Sans', 
+	sans-serif;
+	margin: 5px;
+	width: 100%;
+}
+
+.SubmitButton {
+	background: #02BAE8; 
+	color: #FFFFFF;
+	font-size: 24px;
+	font-family: 
+	'Open Sans', 
+	sans-serif;
+	width: 150px;
+	margin: 5px;
+	border-radius: 15px;
+	position: relative;
+	left: 50%;
+	transform: translate(-50%, 0);
+}
+
+.SubmitButton:hover {
+	background: #DDE7F0;
+	color: #1F232B;
 }
